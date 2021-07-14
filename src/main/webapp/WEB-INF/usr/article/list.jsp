@@ -20,7 +20,34 @@
 				${totalItemsCount}
 			</div>
 
-			
+			<form action="" class="grid gap-2 px-4 py-4">
+				<div class = "searchBox flex border-2 border-red-500"">
+					<div class = "border-2 border-red-500 pt-2">
+						<input name="searchKeyword" type="text" placeholder="검색어">
+					</div>
+					<div class="form-control">
+	                     <label class="label">
+	                         <input type="submit" class="btn btn-sm btn-primary" value="검색" />
+	                     </label>
+	                </div>
+                </div>
+				<div>
+					<select name="searchKeywordTypeCode">
+						<option value="title,body">제목,내용</option>
+						<option value="title" selected>제목</option>
+						<option value="body">내용</option>
+					</select>
+					<script>
+                            const param__searchKeywordType = '${param.searchKeywordType}';
+                            if (param__searchKeywordType.length > 0) {
+                                $('.search-form-box form [name="searchKeywordType"]')
+                                    .val('${param.searchKeywordType}');
+                            }
+                   </script>
+				</div>
+				<div>
+				</div>
+			</form>
 
 			<hr />
 
