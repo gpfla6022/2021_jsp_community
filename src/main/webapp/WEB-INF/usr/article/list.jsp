@@ -20,6 +20,8 @@
 				${totalItemsCount}
 			</div>
 
+			
+
 			<hr />
 
 			<div class="px-4">
@@ -28,23 +30,31 @@
 
 					<div class="py-4">
 						<div class="grid gap-3" style="grid-template-columns: 100px 1fr;">
-							<a href="${detailUri}"> <img class="rounded-full w-full"
-								src="https://i.pravatar.cc/200?img=37" alt="">
-							</a> <a href="${detailUri}" class="hover:underline cursor-pointer">
+							<a href="${detailUri}"> 
+								<img class="rounded-full w-full" src="https://i.pravatar.cc/200?img=37" alt="">
+							</a> 
+							<a href="${detailUri}" class="hover:underline cursor-pointer">
 								<span class="badge badge-outline">제목</span>
 								<div class="line-clamp-3">${article.titleForPrint}</div>
 							</a>
 						</div>
 
 						<div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-							<a href="${detailUri}" class="hover:underline"> <span
-								class="badge badge-primary">번호</span> <span>${article.id}</span>
-							</a> <a href="${detailUri}" class="cursor-pointer hover:underline">
-								<span class="badge badge-accent">작성자</span> <span>${article.extra__writerName}</span>
-							</a> <a href="${detailUri}" class="hover:underline"> <span
-								class="badge">등록날짜</span> <span class="text-gray-600 text-light">${article.regDate}</span>
-							</a> <a href="${detailUri}" class="hover:underline"> <span
-								class="badge">수정날짜</span> <span class="text-gray-600 text-light">${article.updateDate}</span>
+							<a href="${detailUri}" class="hover:underline"> 
+								<span class="badge badge-primary">번호</span> 
+								<span>${article.id}</span>
+							</a> 
+							<a href="${detailUri}" class="cursor-pointer hover:underline">
+								<span class="badge badge-accent">작성자</span> 
+								<span>${article.extra__writerName}</span>
+							</a> 
+							<a href="${detailUri}" class="hover:underline"> 
+								<span class="badge">등록날짜</span> 
+								<span class="text-gray-600 text-light">${article.regDate}</span>
+							</a> 
+							<a href="${detailUri}" class="hover:underline"> 
+								<span class="badge">수정날짜</span> 
+								<span class="text-gray-600 text-light">${article.updateDate}</span>
 							</a>
 						</div>
 
@@ -75,15 +85,36 @@
 						</c:if>
 					</div>
 
-					<hr />
+					<hr/>
 				</c:forEach>
 
-				<div class="page-menu">
-					<c:forEach var="i" begin="1" end="${totalPage}" step="1">
-						<c:set var="aClassStr" value="${i == param.page ? 'text-red-500 font-bold' : ''}" />
-						<a class="${aClassStr}" href="?page=${i}">${i}</a>
-					</c:forEach>
-				</div>
+			<div class="pages mt-4 mb-4 text-center">
+				<c:set var="pageMenuArmSize" value="4" />
+				<c:set var="startPage"
+					value="${page - pageMenuArmSize >= 1  ? page - pageMenuArmSize : 1}" />
+				<c:set var="endPage"
+					value="${page + pageMenuArmSize <= totalPage ? page + pageMenuArmSize : totalPage}" />
+	
+					
+				<c:set var="aClassStr"
+					value="px-2 inline-block border border-gray-200 rounded text-lg hover:bg-gray-200" />
+	
+				<c:if test="${startPage > 1}">
+					<a class="${aClassStr}" href="?page=1">◀◀</a>
+					<a class="${aClassStr}" href="?page=${startPage - 1}">◀</a>
+				</c:if>
+	
+				<c:forEach var="i" begin="${startPage}" end="${endPage}">
+					<a class="${aClassStr} ${page == i ? 'text-red-500' : ''}"
+						href="?page=${i}">${i}</a>
+				</c:forEach>
+	
+				<c:if test="${endPage < totalPage}">
+					<a class="${aClassStr}" href="?page=${endPage + 1}">▶</a>
+	
+					<a class="${aClassStr}" href="?page=${totalPage}">▶▶</a>
+				</c:if>
+		    </div>
 			</div>
 		</div>
 	</div>
