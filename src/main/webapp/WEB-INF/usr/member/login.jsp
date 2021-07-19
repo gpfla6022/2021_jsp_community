@@ -10,10 +10,9 @@
 
 		<div class="card bordered shadow-lg">
 			<div class="card-title">
-				<a href="javascript:history.back();" class="cursor-pointer">
-					<i class="fas fa-chevron-left"></i>
-				</a>
-				<span>로그인</span>
+				<a href="javascript:history.back();" class="cursor-pointer"> <i
+					class="fas fa-chevron-left"></i>
+				</a> <span>로그인</span>
 			</div>
 
 			<div class="px-4 py-4">
@@ -44,10 +43,9 @@
 				</script>
 				<form action="../member/doLogin" method="POST"
 					onsubmit="MemberLogin__submit(this); return false;">
-					
+
 					<div class="form-control">
-						<label class="label">
-							<span class="label-text">로그인아이디</span>
+						<label class="label"> <span class="label-text">로그인아이디</span>
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
@@ -56,8 +54,7 @@
 					</div>
 
 					<div class="form-control">
-						<label class="label">
-							<span class="label-text">로그인비밀번호</span>
+						<label class="label"> <span class="label-text">로그인비밀번호</span>
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"

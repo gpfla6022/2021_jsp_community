@@ -55,9 +55,9 @@ SET regDate = NOW(),
 updateDate = NOW(),
 loginId = 'user1',
 loginPw = 'user1',
-`name` = '홍길순',
-nickname = '강바람',
-email = 'jangka512@gmail.com',
+`name` = '윤혜림',
+nickname = '윤혜림',
+email = 'gpfla3503@gmail.com',
 cellphoneNo = '01012341234';
 
 # 게시판 테이블 생성
@@ -117,15 +117,17 @@ boardId = 2;
 
 /*
 # 테스트 게시물 만들기
-insert into article
+INSERT INTO article
 (regDate, updateDate, boardId, memberId, title, `body`)
-select 
+SELECT 
 NOW(),
-now(),
-CAST(RAND() * 2 AS SIGNED) + 1,
-CAST(RAND() * 2 AS SIGNED) + 1,
-concat('제목--', RAND()),
+NOW(),
+CAST(RAND() * (2 - 1) AS SIGNED) + 1,
+CAST(RAND() * (2 - 1) AS SIGNED) + 1,
+CONCAT('제목--', RAND()),
 CONCAT('내용--', RAND())
-from article;
+FROM article;
 */
+
+
 
