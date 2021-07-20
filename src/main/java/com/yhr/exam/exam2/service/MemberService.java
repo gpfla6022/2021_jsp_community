@@ -22,4 +22,11 @@ public class MemberService {
 		return ResultData.from("S-1", "환영합니다.", "member", member);
 	}
 
+	public ResultData join(String loginId, String loginPw, String name, String nickname, String email, String cellphoneNo) {
+		
+		int member = memberRepository.getJoin(loginId, loginPw, name, nickname, email, cellphoneNo);
+		
+		return ResultData.from("S-1", "회원가입이 되었습니다.", "member", member);
+	}
+
 }
