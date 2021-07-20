@@ -30,6 +30,7 @@
 	href="${pageContext.request.contextPath}/resource/common.css" />
 </head>
 <script>
+const rqBaseTypeAttrMapJsonStr = ${rq.baseTypeAttrMapJsonStr};
 const rqParams = ${rq.paramMapJsonStr};
 </script>
 <body>
