@@ -76,6 +76,7 @@ public class UsrMemberController extends Controller {
 
 		if (joinRd.isFail()) {
 			rq.historyBack(joinRd.getMsg());
+			return;
 		}
 
 		rq.replace(joinRd.getMsg(), "../article/list");
@@ -110,6 +111,7 @@ public class UsrMemberController extends Controller {
 
 		if (loginRd.isFail()) {
 			rq.historyBack(loginRd.getMsg());
+			return;
 		}
 
 		Member member = (Member) loginRd.getBody().get("member");
