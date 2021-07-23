@@ -243,6 +243,7 @@ public class Rq {
 	public String getBaseTypeAttrMapJsonStr() {
 		return Ut.toJson(getBaseTypeAttrMap(), "");
 	}
+
 	
 	public String getCurrentUri() {
 		String uri = req.getRequestURI();

@@ -30,14 +30,14 @@
 	href="${pageContext.request.contextPath}/resource/common.css" />
 </head>
 <script>
-const rqBaseTypeAttrMapJsonStr = ${rq.baseTypeAttrMapJsonStr};
+const rqBaseTypeAttr = ${rq.baseTypeAttrMapJsonStr};
 const rqParams = ${rq.paramMapJsonStr};
 </script>
 <body>
 
 	<header class="top-bar h-20 font-bold">
 		<div class="h-full container mx-auto flex">
-			<a href="../article/list"
+			<a href="../../"
 				class="top-bar__logo flex items-center px-4 hover:underline hover:text-red-500 ">
 				<span>
 					<i class="fas fa-globe"></i>
