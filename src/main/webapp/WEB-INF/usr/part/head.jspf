@@ -38,7 +38,8 @@ const rqParams = ${rq.paramMapJsonStr};
 <%="</script>"%>
 <body>
 
-	<div class ="h-10"></div>
+	<div class ="site-wrap min-h-screen flex flex-col">
+	<div class ="h-10 flex-shirink-0 md-4"></div>
 	<header class="top-bar fixed z-50 inset-0 h-10 font-bold bg-white border-b">
 		<div class="h-full container mx-auto flex">
 			<a href="../../"
@@ -46,7 +47,7 @@ const rqParams = ${rq.paramMapJsonStr};
 				<span>
 					<i class="fas fa-globe"></i>
 				</span>
-				<span class = "hidden md:block">&nbsp;JSP 커뮤니티 </span>
+				<span class = "hidden md:block">&nbsp;JSP 커뮤니티</span>
 			</a>
 
 			<div class="flex-grow"></div>
