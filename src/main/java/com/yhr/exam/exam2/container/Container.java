@@ -19,6 +19,7 @@ public class Container {
 	public static ArticleRepository articleRepository;
 	public static ArticleService articleService;
 	public static UsrArticleController usrArticleController;
+	
 	public static UsrHomeController usrHomeController;
 
 	public static MemberRepository memberRepository;
