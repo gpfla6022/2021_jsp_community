@@ -48,6 +48,8 @@ const rqParams = ${rq.paramMapJsonStr};
 					<i class="fas fa-globe"></i>
 				</span>
 				<span class = "hidden md:block">&nbsp;JSP 커뮤니티</span>
+				<!-- <span class ="logo-text-mini hidden">&nbsp;JSP</span>
+					 <span class ="logo-text-full">&nbsp;JSP 커뮤니티</span> -->
 			</a>
 
 			<div class="flex-grow"></div>

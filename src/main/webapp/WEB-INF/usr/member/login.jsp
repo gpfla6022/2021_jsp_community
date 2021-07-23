@@ -5,14 +5,15 @@
 <c:set var="pageTitle" value="로그인" />
 <%@ include file="../part/head.jspf"%>
 
-<section class="section section-member-login px-4">
-	<div class="container mx-auto">
+<section class="section section-member-login flex-grow flex justify-center items-center">
+	<div class="w-full max-w-md card-wrap">
 
-		<div class="card bordered shadow-lg">
+		<div class="card bordered shadow-xl">
 			<div class="card-title">
-				<a href="javascript:history.back();" class="cursor-pointer"> <i
-					class="fas fa-chevron-left"></i>
-				</a> <span>로그인</span>
+				<span> 
+					<i class="fas fa-chevron-left"></i>
+				</span> 
+				<span>로그인</span>
 			</div>
 
 			<div class="px-4 py-4">
