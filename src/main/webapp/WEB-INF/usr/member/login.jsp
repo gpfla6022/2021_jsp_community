@@ -7,12 +7,11 @@
 
 <section class="section section-member-login flex-grow flex justify-center items-center">
 	<div class="w-full max-w-md card-wrap">
-
-		<div class="card bordered shadow-xl">
+		<div class="card bordered shadow-lg">
 			<div class="card-title">
-				<span> 
-					<i class="fas fa-chevron-left"></i>
-				</span> 
+				<span>
+					<i class="fas fa-sign-in-alt"></i>
+				</span>
 				<span>로그인</span>
 			</div>
 
@@ -24,16 +23,16 @@
 							return;
 						}
 
-						if (form.title.value.length == 0) {
-							alert('제목을 입력해주세요.');
-							form.title.focus();
+						if (form.loginId.value.length == 0) {
+							alert('로그인아이디를 입력해주세요.');
+							form.loginId.focus();
 
 							return;
 						}
 
-						if (form.body.value.length == 0) {
-							alert('내용을 입력해주세요.');
-							form.body.focus();
+						if (form.loginPw.value.length == 0) {
+							alert('로그인비밀번호를 입력해주세요.');
+							form.loginPw.focus();
 
 							return;
 						}
@@ -44,25 +43,25 @@
 				</script>
 				<form action="../member/doLogin" method="POST"
 					onsubmit="MemberLogin__submit(this); return false;">
-
-					<input type="hidden" name="redirectUri"
-						value="${param.afterLoginUri}" />
-
+					<input type="hidden" name="redirectUri" value="${param.afterLoginUri}" />
+					
 					<div class="form-control">
-						<label class="label"> <span class="label-text">아이디</span>
+						<label class="label">
+							<span class="label-text">로그인아이디</span>
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="loginId" type="text" placeholder="아이디를 입력해주세요." />
+								name="loginId" type="text" placeholder="로그인아이디를 입력해주세요." />
 						</div>
 					</div>
 
 					<div class="form-control">
-						<label class="label"> <span class="label-text">비밀번호</span>
+						<label class="label">
+							<span class="label-text">로그인비밀번호</span>
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="loginPw" type="password" placeholder="비밀번호를 입력해주세요." />
+								name="loginPw" type="password" placeholder="로그인비밀번호를 입력해주세요." />
 						</div>
 					</div>
 

@@ -243,19 +243,18 @@ public class Rq {
 	public String getBaseTypeAttrMapJsonStr() {
 		return Ut.toJson(getBaseTypeAttrMap(), "");
 	}
-
 	
 	public String getCurrentUri() {
 		String uri = req.getRequestURI();
 		String queryStr = req.getQueryString();
-
+		
 		if ( queryStr != null && queryStr.length() > 0 ) {
 			uri += "?" + queryStr;
 		}
-
+		
 		return uri;
 	}
-
+	
 	public String getEncodedCurrentUri() {
 		return Ut.getUriEncoded(getCurrentUri());
 	}
@@ -266,11 +265,11 @@ public class Rq {
 
 	public String getAfterLoginUri() {
 		String afterLoginUri = getParam("afterLoginUri", "");
-
+		
 		if ( afterLoginUri.length() > 0 ) {
 			return afterLoginUri;
 		}
-
+		
 		return getCurrentUri();
 	}
 }

@@ -10,9 +10,10 @@
 
 		<div class="card bordered shadow-lg">
 			<div class="card-title">
-				<a href="javascript:history.back();" class="cursor-pointer"> <i
-					class="fas fa-chevron-left"></i>
-				</a> <span>게시물 상세페이지</span>
+				<a href="javascript:history.back();" class="cursor-pointer">
+					<i class="fas fa-chevron-left"></i>
+				</a>
+				<span>게시물 상세페이지</span>
 			</div>
 
 			<div class="px-4 py-4">
@@ -20,6 +21,13 @@
 					let ArticleWrite__submitDone = false;
 					function ArticleWrite__submit(form) {
 						if (ArticleWrite__submitDone) {
+							return;
+						}
+						
+						if ( form.boardId.value == 0 ) {
+							alert('게시판을 선택해주세요.');
+							form.boardId.focus();
+
 							return;
 						}
 
@@ -44,32 +52,23 @@
 				<form action="../article/doWrite" method="POST"
 					onsubmit="ArticleWrite__submit(this); return false;">
 					<input type="hidden" name="redirectUri"
-						value="../article/detail?id=[NEW_ID]" /> 
-						
-					<select name = "board" class="select select-bordered w-full max-w-xs">
-						<option disabled selected>- 게시판 선택 -</option>
-						<option value="notice" >공지 게시판</option>
-						<option value="free">자유 게시판</option>
-					</select>
-					
-					
-					<script>
-					    $('.section-article-write select[name="board"]').val(board);
-					</script>
-					
-					
-					<!--
-					<script>
-
-                            if ( '${param.board}'.trim().length > 0 ) {
-                                $('.section-article-list select[name="searchKeywordTypeCode"]').val('${param.searchKeywordTypeCode}');
-                            }
-
-                   </script> -->
-					
-
+						value="../article/detail?id=[NEW_ID]" />
 					<div class="form-control">
-						<label class="label"> <span class="label-text">제목</span>
+						<label class="label">
+							<span class="label-text">게시판</span>
+						</label>
+						<div>
+							<select class="select select-bordered w-full max-w-md" name="boardId">
+								<option value="0" selected disabled>- 게시판 선택 -</option>
+								<option value="1">공지사항</option>
+								<option value="2">자유게시판</option>
+							</select>
+						</div>
+					</div>
+						
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">제목</span>
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
@@ -78,7 +77,8 @@
 					</div>
 
 					<div class="form-control">
-						<label class="label"> <span class="label-text">내용</span>
+						<label class="label">
+							<span class="label-text">내용</span>
 						</label>
 						<textarea maxlength="2000" class="textarea textarea-bordered h-60"
 							placeholder="내용을 입력해주세요." name="body"></textarea>

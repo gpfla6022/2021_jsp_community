@@ -3,11 +3,12 @@ package com.yhr.exam.exam2.http.controller;
 import com.yhr.exam.exam2.http.Rq;
 
 public class UsrHomeController extends Controller {
-
+	@Override
 	public void performAction(Rq rq) {
 		switch (rq.getActionMethodName()) {
 		case "main":
 			actionShowMain(rq);
+			break;
 		default:
 			rq.println("존재하지 않는 페이지 입니다.");
 			break;
@@ -16,6 +17,5 @@ public class UsrHomeController extends Controller {
 
 	private void actionShowMain(Rq rq) {
 		rq.jsp("usr/home/main");
-		
 	}
 }

@@ -55,9 +55,9 @@ SET regDate = NOW(),
 updateDate = NOW(),
 loginId = 'user1',
 loginPw = 'user1',
-`name` = '윤혜림',
-nickname = '윤혜림',
-email = 'gpfla3503@gmail.com',
+`name` = '홍길순',
+nickname = '강바람',
+email = 'jangka512@gmail.com',
 cellphoneNo = '01012341234';
 
 # 게시판 테이블 생성

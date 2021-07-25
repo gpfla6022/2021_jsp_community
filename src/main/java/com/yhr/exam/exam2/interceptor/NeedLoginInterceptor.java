@@ -10,11 +10,11 @@ public class NeedLoginInterceptor extends Interceptor {
 		case "/usr/article/list":
 		case "/usr/article/detail":
 		case "/usr/home/main":
+		case "/usr/member/login":
+		case "/usr/member/doLogout":
+		case "/usr/member/doLogin":
 		case "/usr/member/join":
 		case "/usr/member/doJoin":
-		case "/usr/member/login":
-		case "/usr/member/doLogin":
-		case "/usr/member/doLogout":
 		case "/usr/member/findLoginId":
 		case "/usr/member/doFindLoginId":
 		case "/usr/member/findLoginPw":
@@ -23,7 +23,6 @@ public class NeedLoginInterceptor extends Interceptor {
 		}
 		
 		if ( rq.isNotLogined() ) {
-			// rq.historyBack("로그인 후 이용해주세요.");
 			rq.replace("로그인 후 이용해주세요.", "../member/login?afterLoginUri=" + rq.getEncodedAfterLoginUri());
 			
 			return false;

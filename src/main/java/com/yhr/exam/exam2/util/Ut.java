@@ -10,7 +10,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Ut {
-	
 	private static final Map<Class<?>, Class<?>> WRAPPER_TYPE_MAP;
 	static {
 	    WRAPPER_TYPE_MAP = new HashMap<Class<?>, Class<?>>(16);
@@ -24,20 +23,20 @@ public class Ut {
 	    WRAPPER_TYPE_MAP.put(Short.class, short.class);
 	    WRAPPER_TYPE_MAP.put(Void.class, void.class);
 	}
-
+	
 	public static boolean isPrimitiveType(Object source) {
 	    return WRAPPER_TYPE_MAP.containsKey(source.getClass());
 	}
-
+	
 	public static boolean isBaseType(Object source) {
 		if ( isPrimitiveType(source) ) {
 			return true;
 		}
-
+		
 		if ( source instanceof String ) {
 			return true;
 		}
-
+		
 		return false;
 	}
 	
@@ -112,5 +111,4 @@ public class Ut {
             return str;
         }
     }
-
 }

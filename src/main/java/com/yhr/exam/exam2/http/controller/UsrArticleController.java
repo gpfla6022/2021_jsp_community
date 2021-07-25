@@ -4,13 +4,16 @@ import java.util.List;
 
 import com.yhr.exam.exam2.container.Container;
 import com.yhr.exam.exam2.dto.Article;
+import com.yhr.exam.exam2.dto.Board;
 import com.yhr.exam.exam2.dto.ResultData;
 import com.yhr.exam.exam2.http.Rq;
 import com.yhr.exam.exam2.service.ArticleService;
+import com.yhr.exam.exam2.service.BoardService;
 import com.yhr.exam.exam2.util.Ut;
 
 public class UsrArticleController extends Controller {
 	private ArticleService articleService = Container.articleService;
+	private BoardService boardService = Container.boardService;
 
 	@Override
 	public void performAction(Rq rq) {
@@ -102,6 +105,10 @@ public class UsrArticleController extends Controller {
 		
 		int totalPage = (int)Math.ceil((double)totalItemsCount / itemsCountInAPage);
 		
+		Board board = boardService.getBoardById(boardId);
+		
+		rq.setAttr("board", board);
+		
 		rq.setAttr("searchKeywordTypeCode", searchKeywordTypeCode);
 		rq.setAttr("page", page);
 		rq.setAttr("boardId", boardId);
@@ -112,11 +119,16 @@ public class UsrArticleController extends Controller {
 	}
 
 	private void actionDoWrite(Rq rq) {
-		int boardId = 1; // 임시구현 //rq.getIntParam("boardId", 0);
+		int boardId = rq.getIntParam("boardId", 0);
 		int memberId = rq.getLoginedMemberId();
 		String title = rq.getParam("title", "");
 		String body = rq.getParam("body", "");
 		String redirectUri = rq.getParam("redirectUri", "../article/list");
+		
+		if (boardId == 0) {
+			rq.historyBack("boardId를 입력해주세요.");
+			return;
+		}
 
 		if (title.length() == 0) {
 			rq.historyBack("title을 입력해주세요.");
