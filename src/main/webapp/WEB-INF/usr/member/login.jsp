@@ -75,7 +75,7 @@
 					</a>
 				</div>
 				<div class="btns">
-					<a href="../member/findId">
+					<a href="../member/findPw">
 						<button type="submit" class="btn btn-link">비밀번호찾기</button>
 					</a>
 				</div>
