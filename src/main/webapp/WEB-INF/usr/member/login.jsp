@@ -69,6 +69,16 @@
 						<button type="submit" class="btn btn-link">로그인</button>
 					</div>
 				</form>
+				<div class="btns">
+					<a href="../member/findId">
+						<button type="submit" class="btn btn-link">아이디찾기</button>
+					</a>
+				</div>
+				<div class="btns">
+					<a href="../member/findId">
+						<button type="submit" class="btn btn-link">비밀번호찾기</button>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>

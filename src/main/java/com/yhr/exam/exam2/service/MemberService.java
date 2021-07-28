@@ -22,4 +22,30 @@ public class MemberService {
 		return ResultData.from("S-1", "환영합니다.", "member", member);
 	}
 
+	public ResultData findId(String name, String email) {
+		Member member = memberRepository.getMemberIdByInfo(name, email);
+		
+		if (member == null) {
+			return ResultData.from("F-1", "존재하지 않는 회원의 이름입니다.");
+		}
+		if (member.getEmail().equals(email) == false) {
+			return ResultData.from("F-2", "이메일이 일치하지 않습니다.");
+		}
+		
+		return ResultData.from("S-1", "일치합니다.", "member", member);
+	}
+
+	public ResultData findPw(String loginId, String email) {
+		Member member = memberRepository.getMemberIdByInfo2(loginId, email);
+		
+		if (member == null) {
+			return ResultData.from("F-1", "존재하지 않는 회원의 아이디입니다.");
+		}
+		if (member.getEmail().equals(email) == false) {
+			return ResultData.from("F-2", "이메일이 일치하지 않습니다.");
+		}
+		
+		return ResultData.from("S-1", "일치합니다.", "member", member);
+	}
+
 }
