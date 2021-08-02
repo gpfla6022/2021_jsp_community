@@ -25,6 +25,9 @@ public class UsrMemberController extends Controller {
 		case "join":
 			actionShowJoin(rq);
 			break;
+		case "doJoin":
+			actionDoJoin(rq);
+			break;
 		case "findId":
 			actionShowFindId(rq);
 			break;
@@ -42,6 +45,7 @@ public class UsrMemberController extends Controller {
 			break;
 		}
 	}
+
 
 	private void actionDoFindPw(Rq rq) {
 		String loginId = rq.getParam("loginId", "");
@@ -122,12 +126,12 @@ public class UsrMemberController extends Controller {
 		String loginPw = rq.getParam("loginPw", "");
 
 		if (loginId.length() == 0) {
-			rq.historyBack("loginId를 입력해주세요.");
+			rq.historyBack("아이디를 입력해주세요.");
 			return;
 		}
 
 		if (loginPw.length() == 0) {
-			rq.historyBack("loginPw를 입력해주세요.");
+			rq.historyBack("비밀번호를 입력해주세요.");
 			return;
 		}
 
@@ -149,6 +153,55 @@ public class UsrMemberController extends Controller {
 
 	private void actionShowLogin(Rq rq) {
 		rq.jsp("usr/member/login");
+	}
+	
+	private void actionDoJoin(Rq rq) {
+		String loginId = rq.getParam("loginId", "");
+		String loginPw = rq.getParam("loginPw", "");
+		String name = rq.getParam("name", "");
+		String nickname = rq.getParam("nickname", "");
+		String cellphoneNo = rq.getParam("cellphoneNo", "");
+		String email = rq.getParam("email", "");
+
+		if (loginId.length() == 0) {
+			rq.historyBack("아이디를 입력해주세요.");
+			return;
+		}
+
+		if (loginPw.length() == 0) {
+			rq.historyBack("비밀번호를 입력해주세요.");
+			return;
+		}
+		
+		if (name.length() == 0) {
+			rq.historyBack("이름을 입력해주세요.");
+			return;
+		}
+		
+		if (nickname.length() == 0) {
+			rq.historyBack("별명을 입력해주세요.");
+			return;
+		}
+		
+		if (cellphoneNo.length() == 0) {
+			rq.historyBack("전화번호를 입력해주세요.");
+			return;
+		}
+		
+		if (email.length() == 0) {
+			rq.historyBack("이메일을 입력해주세요.");
+			return;
+		}
+		
+		//rq.print("여기까지는 성공");
+		
+		ResultData joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNo, email);
+
+		if (joinRd.isFail()) {
+			rq.historyBack(joinRd.getMsg());
+			return;
+		}
+		rq.replace(joinRd.getMsg(), "../member/login");
 	}
 
 	private void actionShowJoin(Rq rq) {
