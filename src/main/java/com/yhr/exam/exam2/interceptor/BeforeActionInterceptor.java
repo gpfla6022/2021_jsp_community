@@ -1,11 +1,19 @@
 package com.yhr.exam.exam2.interceptor;
 
+import com.yhr.exam.exam2.container.Container;
 import com.yhr.exam.exam2.dto.Member;
 import com.yhr.exam.exam2.http.Rq;
 import com.yhr.exam.exam2.util.Ut;
+import com.yhr.exam.exam2.service.MemberService;
 
 public class BeforeActionInterceptor extends Interceptor {
 
+	private MemberService memberService;
+	
+	public BeforeActionInterceptor() {
+		memberService = Container.memberService;
+	}
+	
 	@Override
 	public boolean runBeforeAction(Rq rq) {
 		String loginedMemberJson = rq.getSessionAttr("loginedMemberJson", "");
@@ -14,6 +22,7 @@ public class BeforeActionInterceptor extends Interceptor {
 			rq.setLogined(true);
 			rq.setLoginedMember(Ut.toObjFromJson(loginedMemberJson, Member.class));
 			rq.setLoginedMemberId(rq.getLoginedMember().getId());
+			rq.setAdmin(memberService.isAdmin(rq.getLoginedMember()));
 		}
 		
 		rq.setAttr("rq", rq);
