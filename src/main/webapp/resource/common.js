@@ -52,7 +52,12 @@ function SearchBar__init() {
 function SearchBar__show() {
   $('html').addClass('search-bar-actived');
   $('.search-bar').addClass('active');
-  $('.search-bar form input[name="searchKeyword"]').focus();
+  //$('.search-bar form input[name="searchKeyword"]').focus();
+
+setTimeout(function(){
+	$('.search-bar form input[name="searchKeyword"]').focus();
+}, 100);
+
 }
 
 function SearchBar__hide() {
