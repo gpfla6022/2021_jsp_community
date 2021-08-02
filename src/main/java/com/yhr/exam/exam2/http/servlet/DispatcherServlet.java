@@ -13,8 +13,7 @@ import com.yhr.exam.exam2.http.Rq;
 import com.yhr.exam.exam2.http.controller.Controller;
 import com.yhr.mysqliutil.MysqlUtil;
 
-@WebServlet("/usr/*")
-public class DispatcherServlet extends HttpServlet {
+abstract public class DispatcherServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		Rq rq = new Rq(req, resp);
 
@@ -50,6 +49,12 @@ public class DispatcherServlet extends HttpServlet {
 				return Container.usrHomeController;
 			}
 
+			break;
+		case "adm":
+			switch (rq.getControllerName()) {
+			case "home":
+				return Container.admHomeController;
+			}
 			break;
 		}
 
