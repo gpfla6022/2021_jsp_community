@@ -193,6 +193,7 @@ public class UsrMemberController extends Controller {
 			return;
 		}
 		
+		rq.debugParams();
 		//rq.print("여기까지는 성공");
 		
 		ResultData joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNo, email);
