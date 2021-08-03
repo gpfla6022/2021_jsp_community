@@ -13,7 +13,7 @@ import com.yhr.exam.exam2.util.Ut;
 
 public class UsrArticleController extends Controller {
 	
-	private ArticleService articleService;
+	private ArticleService articleService; // 필드 : 변수
 	private BoardService boardService;
 	
 	public void init() {
@@ -22,7 +22,7 @@ public class UsrArticleController extends Controller {
 	}
 
 	@Override
-	public void performAction(Rq rq) {
+	public void performAction(Rq rq) { // 메소드
 		switch (rq.getActionMethodName()) {
 		case "list":
 			actionShowList(rq);

@@ -56,7 +56,7 @@ updateDate = NOW(),
 loginId = 'user1',
 loginPw = 'user1',
 `name` = '홍길순',
-nickname = '강바람',
+nickname = '회원',
 email = 'gpfla3503@gmail.com',
 cellphoneNo = '01012341234';
 

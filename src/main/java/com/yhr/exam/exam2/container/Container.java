@@ -22,9 +22,15 @@ import com.yhr.exam.exam2.service.EmailService;
 import com.yhr.exam.exam2.service.MemberService;
 
 public class Container {
-	private static List<ContainerComponent> containerComponents;
+	// container를 만든 이유
+	// 객체는 한 번만 만들어져서, 그 만들어진 객체를 공유하여 사용하기 위해 container를 만들었다. 
 	
-	public static App app;
+	// 필드
+	private static List<ContainerComponent> containerComponents;
+	// containerComponents를 만든 이유
+	// containerComponents가 들어갈 수 있는 리스트를 만듬
+	
+	public static App app; // App 클래스를 객체화 해서 사용하려고 만듬
 	
 	public static BeforeActionInterceptor beforeActionInterceptor;
 	public static NeedLoginInterceptor needLoginInterceptor;
@@ -48,10 +54,12 @@ public class Container {
 	
 	public static EmailService emailService;
 
-	public static void init() {
-		containerComponents = new ArrayList<>();
+	// 생성자 대신 init()을 만들어 생성자의 역할을 하게 함
+	// 왜? -> container에서 모든 객체를 관리하기 위해서
+	public static void init() { // 메소드
+		containerComponents = new ArrayList<>(); // 비어있는 리스트 객체생성
 
-		// 의존성 세팅 시작
+		// 의존성 세팅 시작 - 위에 필드에 값을 넣어줌
 		app = addContainerComponent(new App());
 		memberRepository = addContainerComponent(new MemberRepository());
 		boardRepository = addContainerComponent(new BoardRepository());
@@ -80,12 +88,7 @@ public class Container {
 		}
 		
 	}
-		
-		private static List<ContainerComponent> addContainerComponent(Object containerComponent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+      // 제네릭은 치환가능(가상의 타입), object는 치환불가(일종의 데이터 타입)
 		private static <T> T addContainerComponent(ContainerComponent containerComponent) {
 			containerComponents.add(containerComponent);
 
