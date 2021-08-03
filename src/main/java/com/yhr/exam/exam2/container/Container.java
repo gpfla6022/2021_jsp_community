@@ -56,5 +56,41 @@ public class Container {
 		usrHomeController = new UsrHomeController();
 		
 		admHomeController = new AdmHomeController();
+		
+		// 객체 초기화
+		memberRepository.init();
+		boardRepository.init();
+		articleRepository.init();
+		
+		memberService.init();
+		boardService.init();
+		articleService.init();
+		
+		beforeActionInterceptor.init();
+		needLoginInterceptor.init();
+		needLogoutInterceptor.init();
+		needAdminInterceptor.init();
+
+		usrMemberController.init();
+		usrArticleController.init();
+		usrHomeController.init();
+		admHomeController.init();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }

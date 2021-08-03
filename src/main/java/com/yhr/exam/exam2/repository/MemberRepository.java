@@ -6,6 +6,10 @@ import com.yhr.mysqliutil.SecSql;
 
 public class MemberRepository {
 
+	public void init() {
+		
+	}
+
 	public Member getMemberByLoginId(String loginId) {
 		SecSql sql = new SecSql();
 		sql.append("SELECT M.*");
@@ -62,6 +66,7 @@ public class MemberRepository {
 		
 		return id;
 	}
+
 
 
 }

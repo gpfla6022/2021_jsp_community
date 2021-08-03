@@ -4,6 +4,10 @@ import com.yhr.exam.exam2.http.Rq;
 
 public class NeedLoginInterceptor extends Interceptor {
 
+	public void init() {
+		
+	}
+	
 	@Override
 	public boolean runBeforeAction(Rq rq) {
 		

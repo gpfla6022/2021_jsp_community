@@ -5,9 +5,11 @@ import com.yhr.exam.exam2.dto.Board;
 import com.yhr.exam.exam2.repository.BoardRepository;
 
 public class BoardService {
+	
 	private BoardRepository boardRepository;
 	
-	public BoardService() {
+	public void init() {
+		
 		boardRepository = Container.boardRepository;
 	}
 

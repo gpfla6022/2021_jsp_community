@@ -8,7 +8,11 @@ import com.yhr.exam.exam2.service.MemberService;
 import com.yhr.exam.exam2.util.Ut;
 
 public class UsrMemberController extends Controller {
-	private MemberService memberService = Container.memberService;
+	private MemberService memberService;
+
+	public void init() {
+		memberService = Container.memberService;
+	}
 
 	@Override
 	public void performAction(Rq rq) {
@@ -46,7 +50,6 @@ public class UsrMemberController extends Controller {
 		}
 	}
 
-
 	private void actionDoFindPw(Rq rq) {
 		String loginId = rq.getParam("loginId", "");
 		String email = rq.getParam("email", "");
@@ -74,12 +77,11 @@ public class UsrMemberController extends Controller {
 
 		rq.replace("비밀번호는 " + memPw + "입니다. 잊어버리지 마세요", "../home/main");
 
-
 	}
 
 	private void actionShowFindPw(Rq rq) {
 		rq.jsp("usr/member/findPw");
-		
+
 	}
 
 	private void actionDoFindId(Rq rq) {
@@ -154,7 +156,7 @@ public class UsrMemberController extends Controller {
 	private void actionShowLogin(Rq rq) {
 		rq.jsp("usr/member/login");
 	}
-	
+
 	private void actionDoJoin(Rq rq) {
 		String loginId = rq.getParam("loginId", "");
 		String loginPw = rq.getParam("loginPw", "");
@@ -172,30 +174,30 @@ public class UsrMemberController extends Controller {
 			rq.historyBack("비밀번호를 입력해주세요.");
 			return;
 		}
-		
+
 		if (name.length() == 0) {
 			rq.historyBack("이름을 입력해주세요.");
 			return;
 		}
-		
+
 		if (nickname.length() == 0) {
 			rq.historyBack("별명을 입력해주세요.");
 			return;
 		}
-		
+
 		if (cellphoneNo.length() == 0) {
 			rq.historyBack("전화번호를 입력해주세요.");
 			return;
 		}
-		
+
 		if (email.length() == 0) {
 			rq.historyBack("이메일을 입력해주세요.");
 			return;
 		}
-		
+
 		rq.debugParams();
-		//rq.print("여기까지는 성공");
-		
+		// rq.print("여기까지는 성공");
+
 		ResultData joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNo, email);
 
 		if (joinRd.isFail()) {
