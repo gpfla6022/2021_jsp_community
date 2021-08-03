@@ -2,11 +2,12 @@ package com.yhr.exam.exam2.repository;
 
 import java.util.List;
 
+import com.yhr.exam.exam2.container.ContainerComponent;
 import com.yhr.exam.exam2.dto.Article;
 import com.yhr.mysqliutil.MysqlUtil;
 import com.yhr.mysqliutil.SecSql;
 
-public class ArticleRepository {
+public class ArticleRepository implements ContainerComponent{
 	
 	public void init() {
 		

@@ -1,10 +1,11 @@
 package com.yhr.exam.exam2.repository;
 
+import com.yhr.exam.exam2.container.ContainerComponent;
 import com.yhr.exam.exam2.dto.Board;
 import com.yhr.mysqliutil.MysqlUtil;
 import com.yhr.mysqliutil.SecSql;
 
-public class BoardRepository {
+public class BoardRepository implements ContainerComponent{
 	
 	public void init() {
 		

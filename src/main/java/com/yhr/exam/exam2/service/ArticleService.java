@@ -3,13 +3,14 @@ package com.yhr.exam.exam2.service;
 import java.util.List;
 
 import com.yhr.exam.exam2.container.Container;
+import com.yhr.exam.exam2.container.ContainerComponent;
 import com.yhr.exam.exam2.dto.Article;
 import com.yhr.exam.exam2.dto.Member;
 import com.yhr.exam.exam2.dto.ResultData;
 import com.yhr.exam.exam2.repository.ArticleRepository;
 import com.yhr.exam.exam2.util.Ut;
 
-public class ArticleService {
+public class ArticleService implements ContainerComponent {
 	
 	private ArticleRepository articleRepository;
 	

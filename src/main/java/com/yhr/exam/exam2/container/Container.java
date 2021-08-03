@@ -1,5 +1,8 @@
 package com.yhr.exam.exam2.container;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.yhr.exam.exam2.http.controller.AdmHomeController;
 import com.yhr.exam.exam2.http.controller.Controller;
 import com.yhr.exam.exam2.http.controller.UsrArticleController;
@@ -17,6 +20,8 @@ import com.yhr.exam.exam2.service.BoardService;
 import com.yhr.exam.exam2.service.MemberService;
 
 public class Container {
+	private static List<ContainerComponent> containerComponents;
+	
 	public static BeforeActionInterceptor beforeActionInterceptor;
 	public static NeedLoginInterceptor needLoginInterceptor;
 	public static NeedLogoutInterceptor needLogoutInterceptor;
@@ -38,58 +43,45 @@ public class Container {
 	public static AdmHomeController admHomeController;
 
 	public static void init() {
-		memberRepository = new MemberRepository();
-		boardRepository = new BoardRepository();
-		articleRepository = new ArticleRepository();
-		
-		memberService = new MemberService();
-		boardService = new BoardService();
-		articleService = new ArticleService();
+		containerComponents = new ArrayList<>();
 
-		beforeActionInterceptor = new BeforeActionInterceptor();
-		needLoginInterceptor = new NeedLoginInterceptor();
-		needLogoutInterceptor = new NeedLogoutInterceptor();
-		needAdminInterceptor = new NeedAdminInterceptor();
+		// 의존성 세팅 시작
+		memberRepository = addContainerComponent(new MemberRepository());
+		boardRepository = addContainerComponent(new BoardRepository());
+		articleRepository = addContainerComponent(new ArticleRepository());
 
-		usrMemberController = new UsrMemberController();
-		usrArticleController = new UsrArticleController();
-		usrHomeController = new UsrHomeController();
-		
-		admHomeController = new AdmHomeController();
-		
+		memberService = addContainerComponent(new MemberService());
+		boardService = addContainerComponent(new BoardService());
+		articleService = addContainerComponent(new ArticleService());
+
+		beforeActionInterceptor = addContainerComponent(new BeforeActionInterceptor());
+		needLoginInterceptor = addContainerComponent(new NeedLoginInterceptor());
+		needLogoutInterceptor = addContainerComponent(new NeedLogoutInterceptor());
+		needAdminInterceptor = addContainerComponent(new NeedAdminInterceptor());
+
+		usrMemberController = addContainerComponent(new UsrMemberController());
+		usrArticleController = addContainerComponent(new UsrArticleController());
+		usrHomeController = addContainerComponent(new UsrHomeController());
+
+		admHomeController = addContainerComponent(new AdmHomeController());
+
 		// 객체 초기화
-		memberRepository.init();
-		boardRepository.init();
-		articleRepository.init();
+		for(ContainerComponent containerComponent : containerComponents) {
+			containerComponent.init();
+		}
 		
-		memberService.init();
-		boardService.init();
-		articleService.init();
+	}
 		
-		beforeActionInterceptor.init();
-		needLoginInterceptor.init();
-		needLogoutInterceptor.init();
-		needAdminInterceptor.init();
+		private static List<ContainerComponent> addContainerComponent(Object containerComponent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-		usrMemberController.init();
-		usrArticleController.init();
-		usrHomeController.init();
-		admHomeController.init();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		private static <T> T addContainerComponent(ContainerComponent containerComponent) {
+			containerComponents.add(containerComponent);
+
+			return (T) containerComponent;
+
 		
 		
 	}

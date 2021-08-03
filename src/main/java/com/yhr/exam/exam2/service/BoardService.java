@@ -1,10 +1,11 @@
 package com.yhr.exam.exam2.service;
 
 import com.yhr.exam.exam2.container.Container;
+import com.yhr.exam.exam2.container.ContainerComponent;
 import com.yhr.exam.exam2.dto.Board;
 import com.yhr.exam.exam2.repository.BoardRepository;
 
-public class BoardService {
+public class BoardService implements ContainerComponent{
 	
 	private BoardRepository boardRepository;
 	

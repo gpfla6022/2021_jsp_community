@@ -1,12 +1,13 @@
 package com.yhr.exam.exam2.service;
 
 import com.yhr.exam.exam2.container.Container;
+import com.yhr.exam.exam2.container.ContainerComponent;
 import com.yhr.exam.exam2.dto.Member;
 import com.yhr.exam.exam2.dto.ResultData;
 import com.yhr.exam.exam2.repository.MemberRepository;
 import com.yhr.exam.exam2.util.Ut;
 
-public class MemberService {
+public class MemberService implements ContainerComponent{
 	
 	private MemberRepository memberRepository;
 	
