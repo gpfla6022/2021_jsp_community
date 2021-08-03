@@ -1,6 +1,7 @@
 package com.yhr.exam.exam2.http.controller;
 
 import com.yhr.exam.exam2.app.App;
+import com.yhr.exam.exam2.container.Container;
 import com.yhr.exam.exam2.http.Rq;
 import com.yhr.exam.exam2.util.Ut;
 
@@ -27,7 +28,8 @@ public class UsrHomeController extends Controller {
 
 	private void actionShowMmail(Rq rq) {
 		
-		Ut.sendMail(App.getSmtpGmailId(), App.getSmtpGmailPw(), "happy@gmail.com", "테스트 메일입니다.", "gpfla3503@gmail.com", "테스트 제목", "테스트 내용");
+		App app = Container.app;
+		Ut.sendMail(app.getSmtpGmailId(), app.getSmtpGmailPw(), "happy@gmail.com", "테스트 메일입니다.", "gpfla3503@gmail.com", "테스트 제목", "테스트 내용");
 		
 		rq.jsp("usr/home/main");
 		
