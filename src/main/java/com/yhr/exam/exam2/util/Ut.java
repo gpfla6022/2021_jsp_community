@@ -1,5 +1,6 @@
 package com.yhr.exam.exam2.util;
 
+import java.io.FileInputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Date;
@@ -26,34 +27,34 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Ut {
 	private static final Map<Class<?>, Class<?>> WRAPPER_TYPE_MAP;
 	static {
-	    WRAPPER_TYPE_MAP = new HashMap<Class<?>, Class<?>>(16);
-	    WRAPPER_TYPE_MAP.put(Integer.class, int.class);
-	    WRAPPER_TYPE_MAP.put(Byte.class, byte.class);
-	    WRAPPER_TYPE_MAP.put(Character.class, char.class);
-	    WRAPPER_TYPE_MAP.put(Boolean.class, boolean.class);
-	    WRAPPER_TYPE_MAP.put(Double.class, double.class);
-	    WRAPPER_TYPE_MAP.put(Float.class, float.class);
-	    WRAPPER_TYPE_MAP.put(Long.class, long.class);
-	    WRAPPER_TYPE_MAP.put(Short.class, short.class);
-	    WRAPPER_TYPE_MAP.put(Void.class, void.class);
+		WRAPPER_TYPE_MAP = new HashMap<Class<?>, Class<?>>(16);
+		WRAPPER_TYPE_MAP.put(Integer.class, int.class);
+		WRAPPER_TYPE_MAP.put(Byte.class, byte.class);
+		WRAPPER_TYPE_MAP.put(Character.class, char.class);
+		WRAPPER_TYPE_MAP.put(Boolean.class, boolean.class);
+		WRAPPER_TYPE_MAP.put(Double.class, double.class);
+		WRAPPER_TYPE_MAP.put(Float.class, float.class);
+		WRAPPER_TYPE_MAP.put(Long.class, long.class);
+		WRAPPER_TYPE_MAP.put(Short.class, short.class);
+		WRAPPER_TYPE_MAP.put(Void.class, void.class);
 	}
-	
+
 	public static boolean isPrimitiveType(Object source) {
-	    return WRAPPER_TYPE_MAP.containsKey(source.getClass());
+		return WRAPPER_TYPE_MAP.containsKey(source.getClass());
 	}
-	
+
 	public static boolean isBaseType(Object source) {
-		if ( isPrimitiveType(source) ) {
+		if (isPrimitiveType(source)) {
 			return true;
 		}
-		
-		if ( source instanceof String ) {
+
+		if (source instanceof String) {
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	public static String f(String format, Object... args) {
 		return String.format(format, args);
 	}
@@ -117,16 +118,17 @@ public class Ut {
 			return null;
 		}
 	}
-	
+
 	public static String getUriEncoded(String str) {
-        try {
-            return URLEncoder.encode(str, "UTF-8");
-        } catch (Exception e) {
-            return str;
-        }
-    }
-	
-	public static int sendMail(String smtpServerId, String smtpServerPw, String from, String fromName, String to, String title, String body) {
+		try {
+			return URLEncoder.encode(str, "UTF-8");
+		} catch (Exception e) {
+			return str;
+		}
+	}
+
+	public static int sendMail(String smtpServerId, String smtpServerPw, String from, String fromName, String to,
+			String title, String body) {
 		Properties prop = System.getProperties();
 		prop.put("mail.smtp.starttls.enable", "true");
 		prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -162,8 +164,8 @@ public class Ut {
 
 		return 1;
 	}
-	
-	   public static class MailAuth extends Authenticator {
+
+	public static class MailAuth extends Authenticator {
 
 		PasswordAuthentication pa;
 
@@ -182,11 +184,32 @@ public class Ut {
 		om.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
 
 		try {
-			return om
-					.writerWithDefaultPrettyPrinter()
-					.writeValueAsString(obj);
+			return om.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
 		} catch (JsonProcessingException e) {
 			return defaultValue;
 		}
+	}
+
+	// 파일내용 읽어오기
+	public static String getFileContents(String filePath) {
+		String rs = null;
+		try {
+			// 바이트 단위로 파일읽기
+			FileInputStream fileStream = null; // 파일 스트림
+
+			fileStream = new FileInputStream(filePath);// 파일 스트림 생성
+			// 버퍼 선언
+			byte[] readBuffer = new byte[fileStream.available()];
+			while (fileStream.read(readBuffer) != -1) {
+			}
+
+			rs = new String(readBuffer);
+
+			fileStream.close(); // 스트림 닫기
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+
+		return rs;
 	}
 }

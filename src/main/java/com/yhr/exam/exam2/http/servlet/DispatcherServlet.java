@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yhr.exam.exam2.app.App;
 import com.yhr.exam.exam2.container.Container;
 import com.yhr.exam.exam2.http.Rq;
 import com.yhr.exam.exam2.http.controller.Controller;
@@ -21,6 +22,14 @@ abstract public class DispatcherServlet extends HttpServlet {
 			rq.print("올바른 요청이 아닙니다.");
 			return;
 		}
+		
+		if(App.isReady() == false) {
+			rq.print("앱이 실행준비가 아닙니다.");
+			rq.print("<br>");
+			rq.print("필수적으로 만들어져야 하는 파일을 만들었는지 체크 후 다시 실행시켜주세요.");
+			return;
+		}
+		
 
 		if (runInterceptors(rq) == false) {
 			return;
