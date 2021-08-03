@@ -25,9 +25,15 @@ public class App implements ContainerComponent {
 		}
 	}
 
+	// 개발모드
 	public static boolean isDevMode() {
 		// 이 부분을 false로 바꾸면 production 모드 이다.
 		return true;
+	}
+	
+	// 서버에서 돌아가는 모드
+	private static boolean isProductMode() {
+		return isDevMode() == false;
 	}
 
 	// 정적 요소 세팅
@@ -50,4 +56,49 @@ public class App implements ContainerComponent {
 
 	}
 
+	public String getSiteName() {
+		return "JSP Community";
+	}
+
+	public String getBaseUri() {
+		String appUri = getSiteProtocol() + "://" + getSiteDomain();
+
+		if (getSitePort() != 80 && getSitePort() != 443) {
+			appUri += ":" + getSitePort();
+		}
+
+		if (getContextName().length() > 0) {
+			appUri += "/" + getContextName();
+		}
+
+		return appUri;
+	}
+
+	private String getContextName() {
+		if (isProductMode()) {
+			return "";
+		}
+
+		return "2021_jsp_community";
+	}
+
+	private int getSitePort() {
+		return 8087;
+	}
+
+	private String getSiteDomain() {
+		return "localhost";
+	}
+
+	private String getSiteProtocol() {
+		return "http";
+	}
+
+	public String getLoginUri() {
+		return getBaseUri() + "/usr/member/login";
+	}
+
+	public String getNotifyEmailFromName() {
+		return "JSP Community 알림봇";
+	}
 }

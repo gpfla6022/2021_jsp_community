@@ -165,20 +165,6 @@ public class Ut {
 		return 1;
 	}
 
-	public static class MailAuth extends Authenticator {
-
-		PasswordAuthentication pa;
-
-		public MailAuth(String mailId, String mailPw) {
-
-			pa = new PasswordAuthentication(mailId, mailPw);
-		}
-
-		public PasswordAuthentication getPasswordAuthentication() {
-			return pa;
-		}
-	}
-
 	public static String toPrettyJson(Object obj, String defaultValue) {
 		ObjectMapper om = new ObjectMapper();
 		om.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
@@ -211,5 +197,20 @@ public class Ut {
 		}
 
 		return rs;
+	}
+
+	public static String getTempPassword(int length) {
+		int index = 0;
+		char[] charArr = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f',
+				'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+
+		StringBuffer sb = new StringBuffer();
+
+		for (int i = 0; i < length; i++) {
+			index = (int) (charArr.length * Math.random());
+			sb.append(charArr[index]);
+		}
+
+		return sb.toString();
 	}
 }

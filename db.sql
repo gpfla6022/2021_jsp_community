@@ -46,7 +46,7 @@ loginId = 'admin',
 loginPw = 'admin',
 `name` = '홍길동',
 nickname = '관리자',
-email = 'jangka512@gmail.com',
+email = 'gpfla3503@gmail.com',
 cellphoneNo = '01012341234',
 authLevel = 7;
 
@@ -57,7 +57,7 @@ loginId = 'user1',
 loginPw = 'user1',
 `name` = '홍길순',
 nickname = '강바람',
-email = 'jangka512@gmail.com',
+email = 'gpfla3503@gmail.com',
 cellphoneNo = '01012341234';
 
 # 게시판 테이블 생성

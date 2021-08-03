@@ -50,6 +50,7 @@ public class UsrMemberController extends Controller {
 		}
 	}
 
+
 	private void actionDoFindPw(Rq rq) {
 		String loginId = rq.getParam("loginId", "");
 		String email = rq.getParam("email", "");
@@ -63,7 +64,32 @@ public class UsrMemberController extends Controller {
 			rq.historyBack("이메일을 입력해주세요.");
 			return;
 		}
+		
 
+		Member oldMember = memberService.getMemberByLoginId(loginId);
+
+		if (oldMember == null) {
+			rq.historyBack("일치하는 회원이 존재하지 않습니다.");
+			return;
+		}
+
+		if (oldMember.getEmail().equals(email) == false) {
+			rq.historyBack("일치하는 회원이 존재하지 않습니다.");
+			return;
+		}
+
+		ResultData sendTempLoginPwToEmailRd = memberService.sendTempLoginPwToEmail(oldMember);
+		
+		if ( sendTempLoginPwToEmailRd.isFail() ) {
+			rq.historyBack(sendTempLoginPwToEmailRd.getMsg());
+			return;
+		}
+		
+		rq.replace(sendTempLoginPwToEmailRd.getMsg(), "../home/main");
+		return;
+	}
+
+		/*
 		ResultData findPwRd = memberService.findPw(loginId, email);
 
 		if (findPwRd.isFail()) {
@@ -77,7 +103,7 @@ public class UsrMemberController extends Controller {
 
 		rq.replace("비밀번호는 " + memPw + "입니다. 잊어버리지 마세요", "../home/main");
 
-	}
+	}*/
 
 	private void actionShowFindPw(Rq rq) {
 		rq.jsp("usr/member/findPw");
@@ -97,8 +123,19 @@ public class UsrMemberController extends Controller {
 			rq.historyBack("이메일을 입력해주세요.");
 			return;
 		}
+		
+		Member oldMember = memberService.getMemberByNameAndEmail(name, email);
 
-		ResultData findIdRd = memberService.findId(name, email);
+		if (oldMember == null) {
+			rq.historyBack("일치하는 회원이 존재하지 않습니다.");
+			return;
+		}
+
+		String replaceUri = "../member/login?loginId=" + oldMember.getLoginId();
+		rq.replace(Ut.f("해당 회원의 로그인아이디는 `%s` 입니다.", oldMember.getLoginId()), replaceUri);
+	}
+
+		/*ResultData findIdRd = memberService.findId(name, email);
 
 		if (findIdRd.isFail()) {
 			rq.historyBack(findIdRd.getMsg());
@@ -110,8 +147,10 @@ public class UsrMemberController extends Controller {
 		String memId = member.getLoginId();
 
 		rq.replace("아이디는 " + memId + "입니다. 잊어버리지 마세요", "../home/main");
+		
+		}*/
 
-	}
+	
 
 	private void actionShowFindId(Rq rq) {
 		rq.jsp("usr/member/findId");

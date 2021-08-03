@@ -18,6 +18,7 @@ import com.yhr.exam.exam2.repository.BoardRepository;
 import com.yhr.exam.exam2.repository.MemberRepository;
 import com.yhr.exam.exam2.service.ArticleService;
 import com.yhr.exam.exam2.service.BoardService;
+import com.yhr.exam.exam2.service.EmailService;
 import com.yhr.exam.exam2.service.MemberService;
 
 public class Container {
@@ -44,6 +45,8 @@ public class Container {
 	public static BoardService boardService;
 	
 	public static AdmHomeController admHomeController;
+	
+	public static EmailService emailService;
 
 	public static void init() {
 		containerComponents = new ArrayList<>();
@@ -69,6 +72,8 @@ public class Container {
 
 		admHomeController = addContainerComponent(new AdmHomeController());
 
+		emailService = addContainerComponent(new EmailService());
+		
 		// 객체 초기화
 		for(ContainerComponent containerComponent : containerComponents) {
 			containerComponent.init();
