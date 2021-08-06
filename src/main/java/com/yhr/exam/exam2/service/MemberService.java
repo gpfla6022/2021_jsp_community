@@ -124,4 +124,10 @@ public class MemberService implements ContainerComponent {
 		memberRepository.modifyPassword(actor.getId(), tempLoginPw);
 	}
 
+	public ResultData modify(int id, String loginPw, String name, String nickname, String cellphoneNo, String email) {
+		memberRepository.modifyMember(id, loginPw, name, nickname, cellphoneNo, email);
+		
+		return ResultData.from("S-1", "회원정보 수정 성공");
+	}
+
 }

@@ -78,6 +78,34 @@ public class MemberRepository implements ContainerComponent{
 		MysqlUtil.update(sql);
 	}
 
+	public void modifyMember(int id, String loginPw, String name, String nickname, String cellphoneNo, String email) {		
+		
+		SecSql sql = new SecSql();
+		sql.append("UPDATE `member`");
+		sql.append("SET updateDate = NOW()");
 
+		if (loginPw != null) {
+			sql.append(", loginPw = ?", loginPw);
+		}
 
+		if (name != null) {
+			sql.append(", name = ?", name);
+		}
+		
+		if (nickname != null) {
+			sql.append(", nickname = ?", nickname);
+		}
+		
+		if (cellphoneNo != null) {
+			sql.append(", cellphoneNo = ?", cellphoneNo);
+		}
+		
+		if (email != null) {
+			sql.append(", email = ?", email);
+		}
+
+		sql.append("WHERE id = ?", id);
+
+		MysqlUtil.update(sql);
+	}
 }

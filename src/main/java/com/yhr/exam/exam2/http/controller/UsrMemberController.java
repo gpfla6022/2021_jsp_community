@@ -44,12 +44,70 @@ public class UsrMemberController extends Controller {
 		case "doFindPw":
 			actionDoFindPw(rq);
 			break;
+		case "modify":
+			actionShowModify(rq); 
+			break;
+		case "doModify":
+			actionDoModify(rq);
+			break;
 		default:
 			rq.println("존재하지 않는 페이지 입니다.");
 			break;
 		}
 	}
 
+
+	private void actionDoModify(Rq rq) {
+		int id = rq.getIntParam("id", 0);
+		String loginPw = rq.getParam("loginPw", "");
+		String name = rq.getParam("name", "");
+		String nickname = rq.getParam("nickname", "");
+		String cellphoneNo = rq.getParam("cellphoneNo", "");
+		String email = rq.getParam("email", "");
+		
+		if (loginPw.length() == 0) {
+			rq.historyBack("비밀번호를 입력해주세요.");
+			return;
+		}
+
+		if (name.length() == 0) {
+			rq.historyBack("이름을 입력해주세요.");
+			return;
+		}
+
+		if (nickname.length() == 0) {
+			rq.historyBack("별명을 입력해주세요.");
+			return;
+		}
+
+		if (cellphoneNo.length() == 0) {
+			rq.historyBack("전화번호를 입력해주세요.");
+			return;
+		}
+
+		if (email.length() == 0) {
+			rq.historyBack("이메일을 입력해주세요.");
+			return;
+		}
+
+		ResultData modifyRd = memberService.modify(id, loginPw, name, nickname, cellphoneNo, email);
+
+		if (modifyRd.isFail()) {
+			rq.historyBack(modifyRd.getMsg());
+			return;
+		}
+		
+		rq.replace(modifyRd.getMsg(), "../home/main");
+	}
+
+	private void actionShowModify(Rq rq) {
+		
+		Member member = rq.getLoginedMember();
+		
+		rq.setAttr("member", member);
+		rq.jsp("usr/member/modify");
+		
+	}
 
 	private void actionDoFindPw(Rq rq) {
 		String loginId = rq.getParam("loginId", "");

@@ -228,7 +228,7 @@ const rqParams = ${rq.paramMapJsonStr};
 						</li>
 						<c:if test="${rq.logined}">
 							<li>
-								<a href="#" class="h-full flex items-center px-6 hover:underline hover:text-red-500">
+								<a href="../member/modify" class="h-full flex items-center px-6 hover:underline hover:text-red-500">
 									<span>
 										<i class="fas fa-user"></i>
 									</span>
